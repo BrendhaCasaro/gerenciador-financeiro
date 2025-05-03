@@ -11,18 +11,38 @@
 //
 // Para armazenar as transactions voce irá usar um array em memoria
 
+import { Transaction } from "./transaction.js";
+
 class TransactionsStore {
   constructor() {
     this.store = [];
   }
 
-  insert(){}
+  /**
+  * @param {Transaction} transaction
+  */
 
-  searchById(){}
+  insert(transaction){
+   return this.store.push(transaction)
+  }
 
-  totalAmount(){}
+  searchById(id){
+    return this.store.find(transaction => transaction.id == id)
+  }
 
-  delete(){}
+  totalAmount(){
+    return this.store.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0)
+  }
+
+  softDelete(id){
+    const transaction_to_delete = this.searchById(id)
+    transaction_to_delete.delete()
+  }
+  
+  hardDelete(id){
+    const index = this.store.findIndex(transaction => transaction.id == id)
+    this.store.splice(index, 1)
+  }
 
   editById(){}
 
@@ -37,4 +57,26 @@ class TransactionsStore {
   filterByType(){}
 }
 
+const store = new TransactionsStore();
 
+const transaction = new Transaction({
+  name: "Supermercado",
+  description: "Priquito",
+  realizedAt: new Date(),
+  value: 15000,
+});
+store.insert(transaction)
+
+const transaction2 = new Transaction ({
+  name: "adega",
+  description: "teste",
+  realizedAt: new Date(),
+  value: -20,
+});
+store.insert(transaction2)
+
+//console.log(store.store)
+//const amount = store.totalAmount()
+//const transaction_found = store.searchById(transaction2.id)
+//const transaction_deleted = store.softDelete(transaction2.id)
+//const transaction_removed = this.store.hardDelete(transaction2.id)

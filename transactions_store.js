@@ -13,7 +13,7 @@
 
 import { Transaction } from "./transaction.js";
 
-class TransactionsStore {
+export class TransactionsStore {
   constructor() {
     this.store = [];
   }

@@ -19,42 +19,45 @@ export class TransactionsStore {
   }
 
   /**
-  * @param {Transaction} transaction
-  */
+   * @param {Transaction} transaction
+   */
 
-  insert(transaction){
-   return this.store.push(transaction)
+  insert(transaction) {
+    return this.store.push(transaction);
   }
 
-  searchById(id){
-    return this.store.find(transaction => transaction.id == id)
+  searchById(id) {
+    return this.store.find((transaction) => transaction.id == id);
   }
 
-  totalAmount(){
-    return this.store.reduce((accumulator, currentValue) => accumulator + currentValue.value, 0)
+  totalAmount() {
+    return this.store.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.value,
+      0,
+    );
   }
 
-  softDelete(id){
-    const transaction_to_delete = this.searchById(id)
-    transaction_to_delete.delete()
-  }
-  
-  hardDelete(id){
-    const index = this.store.findIndex(transaction => transaction.id == id)
-    this.store.splice(index, 1)
+  softDelete(id) {
+    const transaction_to_delete = this.searchById(id);
+    transaction_to_delete.delete();
   }
 
-  editById(){}
+  hardDelete(id) {
+    const index = this.store.findIndex((transaction) => transaction.id == id);
+    this.store.splice(index, 1);
+  }
 
-  expensesAmount(){}
+  editById() {}
 
-  incomeAmount(){}
+  expensesAmount() {}
 
-  searchByName(){}
+  incomeAmount() {}
 
-  filterByValue(){}
+  searchByName() {}
 
-  filterByType(){}
+  filterByValue() {}
+
+  filterByType() {}
 }
 
 const store = new TransactionsStore();
@@ -65,15 +68,15 @@ const transaction = new Transaction({
   realizedAt: new Date(),
   value: 15000,
 });
-store.insert(transaction)
+store.insert(transaction);
 
-const transaction2 = new Transaction ({
+const transaction2 = new Transaction({
   name: "adega",
   description: "teste",
   realizedAt: new Date(),
   value: -20,
 });
-store.insert(transaction2)
+store.insert(transaction2);
 
 //console.log(store.store)
 //const amount = store.totalAmount()

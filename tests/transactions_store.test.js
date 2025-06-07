@@ -75,6 +75,8 @@ describe("Transactions store methods", () => {
     const store = new TransactionsStore();
     store.insert(transaction);
 
-    store.softDelete();
+    store.softDelete(transaction.id);
+
+    expect(store.store.transaction.deletedAt).toEqual(new Date());
   });
 });

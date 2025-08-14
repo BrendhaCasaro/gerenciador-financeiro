@@ -77,6 +77,6 @@ describe("Transactions store methods", () => {
 
     store.softDelete(transaction.id);
 
-    expect(store.store.transaction.deletedAt).toEqual(new Date());
+    expect(store.store[0].deletedAt).toEqual(new Date());
   });
 });

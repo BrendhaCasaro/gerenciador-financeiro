@@ -83,3 +83,5 @@ store.insert(transaction2);
 //const transaction_found = store.searchById(transaction2.id)
 //const transaction_deleted = store.softDelete(transaction2.id)
 //const transaction_removed = this.store.hardDelete(transaction2.id)
+
+console.log(store.store[0])
